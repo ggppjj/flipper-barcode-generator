@@ -11,6 +11,14 @@ void init_types() {
     upc_a->start_pos = 16;
     barcode_type_objs[UPCA] = upc_a;
 
+    BarcodeTypeObj* upc_e = malloc(sizeof(BarcodeTypeObj));
+    upc_e->name = "UPC-E";
+    upc_e->type = UPCE;
+    upc_e->min_digits = 1;
+    upc_e->max_digits = 6;
+    upc_e->start_pos = 16;
+    barcode_type_objs[UPCE] = upc_e;
+
     BarcodeTypeObj* ean_8 = malloc(sizeof(BarcodeTypeObj));
     ean_8->name = "EAN-8";
     ean_8->type = EAN8;
@@ -61,6 +69,9 @@ void free_types() {
 BarcodeTypeObj* get_type(FuriString* type_string) {
     if(furi_string_cmp_str(type_string, "UPC-A") == 0) {
         return barcode_type_objs[UPCA];
+    }
+    if(furi_string_cmp_str(type_string, "UPC-E") == 0) {
+        return barcode_type_objs[UPCE];
     }
     if(furi_string_cmp_str(type_string, "EAN-8") == 0) {
         return barcode_type_objs[EAN8];

@@ -18,6 +18,7 @@ typedef enum {
 
 typedef enum {
     UPCA,
+    UPCE,
     EAN8,
     EAN13,
     CODE39,

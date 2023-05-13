@@ -3,6 +3,7 @@
 void barcode_loader(BarcodeData* barcode_data) {
     switch(barcode_data->type_obj->type) {
     case UPCA:
+    case UPCE:
     case EAN8:
     case EAN13:
         ean_upc_loader(barcode_data);
@@ -30,6 +31,7 @@ int calculate_check_digit(BarcodeData* barcode_data) {
     int check_digit = -1;
     switch(barcode_data->type_obj->type) {
     case UPCA:
+    case UPCE:
     case EAN8:
     case EAN13:
         check_digit = calculate_ean_upc_check_digit(barcode_data);
@@ -66,6 +68,8 @@ int calculate_ean_upc_check_digit(BarcodeData* barcode_data) {
 
     if(barcode_data->type_obj->type == EAN13) {
         check_digit = even * 3 + odd;
+    } else if(barcode_data->type_obj->type == UPCE){
+        
     } else {
         check_digit = odd * 3 + even;
     }
